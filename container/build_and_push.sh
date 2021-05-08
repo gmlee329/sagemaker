@@ -13,8 +13,8 @@ then
     exit 1
 fi
 
-chmod +x decision_trees/train
-chmod +x decision_trees/serve
+chmod +x resnet/train
+chmod +x resnet/serve
 
 # Get the account number associated with the current IAM credentials
 account=$(aws sts get-caller-identity --query Account --output text)
@@ -47,7 +47,7 @@ aws ecr get-login-password --region "${region}" | docker login --username AWS --
 # Build the docker image locally with the image name and then push it to ECR
 # with the full name.
 
-docker build  -t ${image} .
+docker build -t ${image} .
 docker tag ${image} ${fullname}
 
 docker push ${fullname}
