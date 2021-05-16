@@ -34,6 +34,6 @@ ENV PYTHONIOENCODING=UTF-8
 ENV PATH="/opt/program:${PATH}"
 
 # Set up the program in the image
-COPY ./resnet /opt/program
+COPY ./larva_model /opt/program
 WORKDIR /opt/program
 

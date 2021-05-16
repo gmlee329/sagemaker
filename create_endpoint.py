@@ -15,7 +15,7 @@ def parse_arguments():
         "--endpoint_ecr_image_name",
         type=str,
         help=" ",
-        default="resnet"
+        default="larva-model"
     )
     parser.add_argument(
         "-en",
@@ -23,7 +23,7 @@ def parse_arguments():
         type=str,
         nargs="?",
         help="When set, this argument ",
-        default="resnet"
+        default="larva-model"
     )
     parser.add_argument(
         "-i",
@@ -31,7 +31,7 @@ def parse_arguments():
         type=str,
         nargs="?",
         help="When set, this argument ",
-        default="ml.c5.4xlarge"
+        default="ml.c5.xlarge"
     )
     parser.add_argument(
         "-m",
@@ -39,7 +39,7 @@ def parse_arguments():
         type=str,
         nargs="?",
         help="When set, this argument ",
-        default="resnet-2021-05-06-10-52/output/model.tar.gz"
+        default="larva-model/model.tar.gz"
     )
 
     return parser.parse_args()
@@ -76,7 +76,7 @@ def deploy_endpoint():
         repositoryUri = "{}.dkr.ecr.{}.amazonaws.com/{}".format(account, region, image_name)
 
         model_artifacts = args.model_artifacts
-        bucket = 'resnet-bucket'
+        bucket = 'larva-bucket'
         model_data_url='s3://{}/models/{}'.format(bucket, model_artifacts)
 
         sm = boto3.Session().client('sagemaker')

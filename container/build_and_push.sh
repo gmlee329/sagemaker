@@ -13,8 +13,8 @@ then
     exit 1
 fi
 
-chmod +x resnet/train
-chmod +x resnet/serve
+chmod +x larva_model/train
+chmod +x larva_model/serve
 
 # Get the account number associated with the current IAM credentials
 account=$(aws sts get-caller-identity --query Account --output text)

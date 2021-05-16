@@ -5,12 +5,20 @@ import io
 import numpy as np
 import time
 import os
+import im_utils
+
+def img_to_npy(img):
+    img = im_utils.check_angle(img)
+    img = im_utils.make_square(img)
+    img = img.convert('RGB')
+    img = im_utils.resize_img(img, shape=(100,100))
+    img = np.array(img).reshape(1,100,100,3) / 255.
+    return img
 
 def test_api_gateway(path):
     img = Image.open(path)
-    img = img.resize(size=(80,80))
-    img = np.array(img)
-    img = img.reshape(1,80,80,3) / 255.
+    img = img_to_npy(img)
+
     img = img.tolist()
     test_data = {
         'img' : img
